@@ -2,9 +2,9 @@ using System;
 
 interface IGameEventManager<K, T>
 {
-    abstract void subscribe(K eventKey, T action);
+    abstract void Subscribe(K eventKey, T action);
 
-    abstract void unsubscribe(K eventKey, T action);
+    abstract void Unsubscribe(K eventKey, T action);
 
-    abstract void notify(K eventKey);
+    abstract void Notify(K eventKey);
 }

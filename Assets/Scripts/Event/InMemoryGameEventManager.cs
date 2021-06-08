@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InMemoryGameEventManager : Singleton<InMemoryGameEventManager>, IGameEventManager<Enum, Action<object>>
+public class InMemoryGameEventManager : Singleton<InMemoryGameEventManager>, IGameEventManager<Enum, Action>
 {
-    private Dictionary<Enum, Action<object>> events = new Dictionary<Enum, Action<object>>();
+    private Dictionary<Enum, Action> events = new Dictionary<Enum, Action>();
 
-    public void subscribe(Enum eventKey, Action<object> action)
+    public void Subscribe(Enum eventKey, Action action)
     {
-        Action<object> thisAction;
+        Action thisAction;
 
         if (Instance.events.TryGetValue(eventKey, out thisAction))
         {
@@ -22,9 +22,9 @@ public class InMemoryGameEventManager : Singleton<InMemoryGameEventManager>, IGa
         }
     }
 
-    public void unsubscribe(Enum eventKey, Action<object> action)
+    public void Unsubscribe(Enum eventKey, Action action)
     {
-        Action<object> thisAction;
+        Action thisAction;
 
         if (Instance.events.TryGetValue(eventKey, out thisAction))
         {
@@ -33,9 +33,9 @@ public class InMemoryGameEventManager : Singleton<InMemoryGameEventManager>, IGa
         }
     }
 
-    public void notify(Enum eventKey)
+    public void Notify(Enum eventKey)
     {
-        Action<object> action;
+        Action action;
 
         if (Instance.events.TryGetValue(eventKey, out action))
         {

@@ -17,17 +17,17 @@ namespace Tests
             int dummy = 0;
             InMemoryGameEventManager subject = new InMemoryGameEventManager();
 
-            Action<object> actionDummy = delegate (object data)
+            Action actionDummy = delegate ()
             {
                 dummy++;
             };
 
-            subject.subscribe(EventKey.Foo, actionDummy);
+            subject.Subscribe(EventKey.Foo, actionDummy);
             Assert.AreEqual(0, dummy);
-            subject.notify(EventKey.Foo);
+            subject.Notify(EventKey.Foo);
             Assert.AreEqual(1, dummy);
-            subject.unsubscribe(EventKey.Foo, actionDummy);
-            subject.notify(EventKey.Foo);
+            subject.Unsubscribe(EventKey.Foo, actionDummy);
+            subject.Notify(EventKey.Foo);
             Assert.AreEqual(1, dummy);
         }
     }
