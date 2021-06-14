@@ -27,11 +27,19 @@ public class DummyCharacterController : MonoBehaviour
     private void Start()
     {
         characterControlls.Default.Jump.performed += _ => OnJump();
+        characterControlls.Default.Walk.performed += ctx => OnWalk(ctx.ReadValue<float>());
+        characterControlls.Default.Strafe.performed += ctx => OnStrafe(ctx.ReadValue<float>());
+        characterControlls.Default.SprintStart.performed += _ => Debug.Log("bool sprinting = true");
+        characterControlls.Default.SprintEnd.performed += _ => Debug.Log("bool sprinting = false");
     }
 
     private void OnJump()
     {
-        rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
+
+    private void OnWalk(float value) { }         // Value = 1 if forwards, value = -1 if backwards
+
+    private void OnStrafe(float value) { }        // Value = 1 if right, value = -1 if left
 }
 
