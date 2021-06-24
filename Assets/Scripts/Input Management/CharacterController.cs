@@ -1,11 +1,13 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class DummyCharacterController : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
-    [SerializeField] private float jumpForce = 5f;
+    [SerializeField]
+    private float jumpForce = 5f;
 
     private CharacerControlls characterControlls;
+
     private Rigidbody rb;
 
     private void Awake()
