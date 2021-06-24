@@ -60,4 +60,4 @@ crashlytics-build.properties
 
 # IDE
 .vscode
-Assets/Scripts/Input Management/CharacerControlls.cs
+Assets/Scripts/Input Management/CharacerControls.cs
