@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class InMemoryGameEventManager : Singleton<InMemoryGameEventManager>, IGameEventManager<Enum, Action>
 {
@@ -39,7 +38,7 @@ public class InMemoryGameEventManager : Singleton<InMemoryGameEventManager>, IGa
 
         if (Instance.events.TryGetValue(eventKey, out action))
         {
-            action?.Invoke(eventKey);
+            action?.Invoke();
         }
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 interface IGameEventManager<K, T>
 {
     abstract void Subscribe(K eventKey, T action);

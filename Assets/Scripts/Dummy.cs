@@ -7,8 +7,9 @@ public class Dummy : MonoBehaviour
     {
         transform.Translate(Vector3.up * Time.deltaTime * 10.0f);
     }
-    
-    public int Add(int a, int b) {
-	    return a + b;   
+
+    public int Add(int a, int b)
+    {
+        return a + b;
     }
 }
