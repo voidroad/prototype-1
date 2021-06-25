@@ -1,12 +1,12 @@
 using UnityEngine;
 
-class WalkingCharacterState : CharacterState
+class SprintingCharacterState : CharacterState
 {
     private float speed;
 
     private Rigidbody rigidBody;
 
-    public WalkingCharacterState(float speed, Rigidbody rigidBody, ICharacterStateMachine characterStateMachine) : base(characterStateMachine)
+    public SprintingCharacterState(float speed, Rigidbody rigidBody, ICharacterStateMachine characterStateMachine) : base(characterStateMachine)
     {
         this.speed = speed;
         this.rigidBody = rigidBody;

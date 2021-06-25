@@ -1,14 +1,19 @@
-using UnityEngine;
-
-abstract class CharacterState : ICharacterState
+public abstract class CharacterState : IMoveable
 {
-    protected Rigidbody rigidBody;
+    protected ICharacterStateMachine characterStateMachine;
 
-    public CharacterState(Rigidbody rigidBody) {
-        this.rigidBody = rigidBody;
+    public CharacterState(ICharacterStateMachine characterStateMachine)
+    {
+        this.characterStateMachine = characterStateMachine;
     }
 
-   abstract public void OnStateEnter();
+    public virtual void Jump() { }
 
-   abstract public void OnStateExit();
+    public virtual void Move(float direction) { }
+
+    public virtual void OnSprintEnd(float direction) { }
+
+    public virtual void OnSprintStart(float direction) { }
+
+    public virtual void Turn(float direction) { }
 }

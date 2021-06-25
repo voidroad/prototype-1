@@ -2,9 +2,10 @@ using UnityEngine;
 
 class IdleCharacterState : CharacterState
 {
-    public IdleCharacterState(Rigidbody rigidBody) : base(rigidBody) { }
+    public IdleCharacterState(ICharacterStateMachine characterStateMachine) : base(characterStateMachine) { }
 
-    override public void OnStateEnter() { }
-
-    override public void OnStateExit() { }
+    public override void Jump()
+    {
+        Debug.Log("IDLE jump");
+    }
 }
