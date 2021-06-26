@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public abstract class CharacterState : IMoveable
 {
     protected ICharacterStateMachine characterStateMachine;
@@ -7,13 +9,8 @@ public abstract class CharacterState : IMoveable
         this.characterStateMachine = characterStateMachine;
     }
 
+    public virtual void Attack() { }
     public virtual void Jump() { }
-
-    public virtual void Move(float direction) { }
-
-    public virtual void OnSprintEnd(float direction) { }
-
-    public virtual void OnSprintStart(float direction) { }
-
+    public virtual void Move(Vector2 direction) { }
     public virtual void Turn(float direction) { }
 }

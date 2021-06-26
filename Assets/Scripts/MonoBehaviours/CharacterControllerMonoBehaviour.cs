@@ -1,8 +1,14 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerInput))]
 public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMachine, IMoveable
 {
+    # region Fields And Properties
+
+    [SerializeField]
+    private PlayerInput playerInput;
+
     [SerializeField]
     private float jumpForce = 5f;
 
@@ -15,9 +21,7 @@ public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMa
     [SerializeField]
     private float rotateSpeed = 3f;
 
-    private CharacerControls characterControls;
-
-    private Rigidbody rigidBody;
+    #endregion
 
     #region State
 
@@ -63,45 +67,42 @@ public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMa
 
     #endregion
 
+    # region Monobehaviour
+
     private void Awake()
     {
         CurrentState = new IdleCharacterState(this);
-        characterControls = new CharacerControls();
-        rigidBody = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
     {
-        characterControls.Enable();
+        playerInput.actions.Enable();
+
+        Debug.Log("enable" + playerInput.isActiveAndEnabled);
     }
 
     private void OnDisable()
     {
-        characterControls.Disable();
+        playerInput.actions.Disable();
+
+        Debug.Log("disable" + playerInput.isActiveAndEnabled);
     }
 
-    private void Start()
-    {
-        characterControls.Default.Jump.performed += ctx => Jump();
-        characterControls.Default.Walk.performed += ctx => Move(ctx.ReadValue<float>());
-        characterControls.Default.Strafe.performed += ctx => Turn(ctx.ReadValue<float>());
-        characterControls.Default.SprintStart.performed += ctx => OnSprintStart();
-        characterControls.Default.SprintEnd.performed += ctx => OnSprintEnd();
-    }
+    #endregion
 
     # region Movement
 
+    public void Attack()
+    {
+        CurrentState.Attack();
+    }
+
     public void Jump()
     {
-        if (IsIdle)
-        {
-            CurrentState = new JumpingCharacterState(sprintSpeed, rigidBody, this);
-        }
-
         CurrentState.Jump();
     }
 
-    public void Move(float direction)
+    public void Move(Vector2 direction)
     {
         CurrentState.Move(direction);
     }
@@ -111,28 +112,48 @@ public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMa
         CurrentState.Turn(direction);
     }
 
-    public void OnSprintStart()
+    #endregion
+
+    #region Input Events
+
+    public void OnAttack(InputAction.CallbackContext context)
     {
-        if (IsIdle)
-        {
-            CurrentState = new RotatingCharacterState(sprintSpeed, this);
-        }
-        else
-        {
-            CurrentState = new SprintingCharacterState(sprintSpeed, rigidBody, this);
-        }
+        Debug.Log("on attack");
     }
 
-    public void OnSprintEnd()
+    public void OnJump(InputAction.CallbackContext context)
     {
-        if (IsIdle)
-        {
-            CurrentState = new StrafingCharacterState(walkSpeed, this);
-        }
-        else
-        {
-            CurrentState = new WalkingCharacterState(walkSpeed, rigidBody, this);
-        }
+        Debug.Log("on jump");
+        
+        Jump();
+    }
+
+    public void OnForward(InputAction.CallbackContext context)
+    {
+        Debug.Log("on forward");
+
+        Move(new Vector2(0, context.ReadValue<float>()));
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        Debug.Log("on sprint");
+
+        Move(new Vector2(0, context.ReadValue<float>()));
+    }
+
+    public void OnTurn(InputAction.CallbackContext context)
+    {
+        Debug.Log("on turn");
+
+        Turn(context.ReadValue<float>());
+    }
+
+    public void OnStrafe(InputAction.CallbackContext context)
+    {
+        Debug.Log("on strafe");
+
+        Turn(context.ReadValue<float>());
     }
 
     # endregion

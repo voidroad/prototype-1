@@ -12,7 +12,7 @@ class WalkingCharacterState : CharacterState
         this.rigidBody = rigidBody;
     }
 
-    override public void Move(float direction)
+    override public void Move(Vector2 direction)
     {
         rigidBody.AddForce(Vector3.forward * speed, ForceMode.Impulse);
     }
