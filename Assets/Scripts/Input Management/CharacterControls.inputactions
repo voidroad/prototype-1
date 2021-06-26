@@ -15,7 +15,7 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "1179d6b4-09c1-42f1-beba-424d54fc4f8d",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "Forward",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "98740b2e-54bd-489f-b931-774c0e5cb751",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -39,7 +39,7 @@
                 },
                 {
                     "name": "Turn",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "8c61a5ee-78f8-42eb-a652-0d8b247d981b",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -47,7 +47,7 @@
                 },
                 {
                     "name": "Strafe",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "65842496-dda9-4218-8004-95a563c83450",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -124,7 +124,7 @@
                 {
                     "name": "modifier",
                     "id": "d52d35c6-1828-421c-8faf-b9fa9c47992e",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -147,8 +147,8 @@
                     "name": "Button With One Modifier",
                     "id": "c34a1d7c-2d56-435b-8d83-a7406e9413c2",
                     "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
+                    "interactions": "Hold",
+                    "processors": "Invert",
                     "groups": "",
                     "action": "Strafe",
                     "isComposite": true,
@@ -170,7 +170,7 @@
                     "id": "6e31fbc5-2485-42b0-a542-e0a3f50124a2",
                     "path": "<Keyboard>/a",
                     "interactions": "",
-                    "processors": "Invert",
+                    "processors": "",
                     "groups": "Keyboard",
                     "action": "Strafe",
                     "isComposite": false,
@@ -180,7 +180,7 @@
                     "name": "Button With One Modifier",
                     "id": "b06a184f-b8bb-48bb-97da-c218896a618e",
                     "path": "ButtonWithOneModifier",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Strafe",
@@ -249,7 +249,13 @@
         {
             "name": "Keyboard",
             "bindingGroup": "Keyboard",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         }
     ]
 }

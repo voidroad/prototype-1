@@ -71,21 +71,20 @@ public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMa
 
     private void Awake()
     {
-        CurrentState = new IdleCharacterState(this);
+        CurrentState = new IdleCharacterState(
+            GetComponent<Rigidbody>(),
+            this
+        );
     }
 
     private void OnEnable()
     {
         playerInput.actions.Enable();
-
-        Debug.Log("enable" + playerInput.isActiveAndEnabled);
     }
 
     private void OnDisable()
     {
         playerInput.actions.Disable();
-
-        Debug.Log("disable" + playerInput.isActiveAndEnabled);
     }
 
     #endregion
@@ -119,19 +118,22 @@ public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMa
     public void OnAttack(InputAction.CallbackContext context)
     {
         Debug.Log("on attack");
+
+        if (context.started)
+        { CurrentState.Attack(); }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         Debug.Log("on jump");
-        
+
         Jump();
     }
 
     public void OnForward(InputAction.CallbackContext context)
     {
         Debug.Log("on forward");
-
+        
         Move(new Vector2(0, context.ReadValue<float>()));
     }
 

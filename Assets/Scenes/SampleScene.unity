@@ -325,8 +325,8 @@ GameObject:
   - component: {fileID: 865541139}
   - component: {fileID: 865541138}
   - component: {fileID: 865541142}
-  - component: {fileID: 865541143}
   - component: {fileID: 865541137}
+  - component: {fileID: 865541143}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -566,8 +566,8 @@ MonoBehaviour:
     m_ActionName: Game/Strafe[/Keyboard/shift,/Keyboard/a,/Keyboard/shift,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: Game
-  m_SplitScreenIndex: -1
+  m_DefaultActionMap: f024c828-a6a3-4afa-8c27-aeefedca1e38
+  m_SplitScreenIndex: 0
   m_Camera: {fileID: 963194227}
 --- !u!1 &963194225
 GameObject:
