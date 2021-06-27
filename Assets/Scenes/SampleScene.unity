@@ -330,7 +330,7 @@ GameObject:
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -504,7 +504,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 865541137}
         m_TargetAssemblyTypeName: CharacterControllerMonoBehaviour, GameAssembly
-        m_MethodName: OnForward
+        m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -514,13 +514,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 98740b2e-54bd-489f-b931-774c0e5cb751
-    m_ActionName: Game/Forward[/Keyboard/w,/Keyboard/s]
+    m_ActionId: 8f20f67e-2efb-4aaa-831e-e7de20c0a942
+    m_ActionName: Game/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 865541137}
         m_TargetAssemblyTypeName: CharacterControllerMonoBehaviour, GameAssembly
-        m_MethodName: OnSprint
+        m_MethodName: OnShiftPress
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -530,13 +530,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 4e3a3bc9-9ead-4249-9eb4-cb2706c4ae82
-    m_ActionName: Game/Sprint[/Keyboard/leftShift,/Keyboard/w]
+    m_ActionId: 56984f48-e294-4324-8006-87d68d7d1423
+    m_ActionName: Game/ShiftPress[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 865541137}
         m_TargetAssemblyTypeName: CharacterControllerMonoBehaviour, GameAssembly
-        m_MethodName: OnTurn
+        m_MethodName: OnShiftRelease
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -546,27 +546,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 8c61a5ee-78f8-42eb-a652-0d8b247d981b
-    m_ActionName: Game/Turn[/Keyboard/d,/Keyboard/a]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 865541137}
-        m_TargetAssemblyTypeName: CharacterControllerMonoBehaviour, GameAssembly
-        m_MethodName: OnStrafe
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 65842496-dda9-4218-8004-95a563c83450
-    m_ActionName: Game/Strafe[/Keyboard/shift,/Keyboard/a,/Keyboard/shift,/Keyboard/d]
+    m_ActionId: 69ebbc15-c3f6-4cc1-bb04-a070395c99e8
+    m_ActionName: Game/ShiftRelease[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: f024c828-a6a3-4afa-8c27-aeefedca1e38
+  m_DefaultActionMap: Game
   m_SplitScreenIndex: 0
   m_Camera: {fileID: 963194227}
 --- !u!1 &963194225

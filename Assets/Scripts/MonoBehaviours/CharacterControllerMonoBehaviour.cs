@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))]
 public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMachine, IMoveable
 {
@@ -35,34 +36,14 @@ public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMa
         CurrentState = state;
     }
 
-    private bool IsIdle
-    {
-        get { return CurrentState.GetType() == typeof(IdleCharacterState); }
-    }
-
-    private bool IsJumping
-    {
-        get { return CurrentState.GetType() == typeof(JumpingCharacterState); }
-    }
-
     private bool IsWalking
     {
         get { return CurrentState.GetType() == typeof(WalkingCharacterState); }
     }
 
-    private bool IsRotating
-    {
-        get { return CurrentState.GetType() == typeof(RotatingCharacterState); }
-    }
-
     private bool IsSprinting
     {
         get { return CurrentState.GetType() == typeof(SprintingCharacterState); }
-    }
-
-    private bool IsStrafing
-    {
-        get { return CurrentState.GetType() == typeof(StrafingCharacterState); }
     }
 
     #endregion
@@ -71,10 +52,7 @@ public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMa
 
     private void Awake()
     {
-        CurrentState = new IdleCharacterState(
-            GetComponent<Rigidbody>(),
-            this
-        );
+        CurrentState = new WalkingCharacterState(walkSpeed, GetComponent<Rigidbody>(), this);
     }
 
     private void OnEnable()
@@ -106,56 +84,43 @@ public class CharacterControllerMonoBehaviour : MonoBehaviour, ICharacterStateMa
         CurrentState.Move(direction);
     }
 
-    public void Turn(float direction)
-    {
-        CurrentState.Turn(direction);
-    }
-
     #endregion
 
     #region Input Events
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        Debug.Log("on attack");
+        if (!context.performed)
+        {
+            return;
+        }
 
-        if (context.started)
-        { CurrentState.Attack(); }
+        Attack();
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("on jump");
-
+        if (!context.performed)
+        {
+            return;
+        }
+        
         Jump();
     }
 
-    public void OnForward(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("on forward");
-        
-        Move(new Vector2(0, context.ReadValue<float>()));
+        Move(context.ReadValue<Vector2>());
+    }
+    
+    public void OnShiftPress(InputAction.CallbackContext context)
+    {
+        CurrentState = new SprintingCharacterState(sprintSpeed, GetComponent<Rigidbody>(), this);
     }
 
-    public void OnSprint(InputAction.CallbackContext context)
+    public void OnShiftRelease(InputAction.CallbackContext context)
     {
-        Debug.Log("on sprint");
-
-        Move(new Vector2(0, context.ReadValue<float>()));
-    }
-
-    public void OnTurn(InputAction.CallbackContext context)
-    {
-        Debug.Log("on turn");
-
-        Turn(context.ReadValue<float>());
-    }
-
-    public void OnStrafe(InputAction.CallbackContext context)
-    {
-        Debug.Log("on strafe");
-
-        Turn(context.ReadValue<float>());
+        CurrentState = new WalkingCharacterState(walkSpeed, GetComponent<Rigidbody>(), this);
     }
 
     # endregion

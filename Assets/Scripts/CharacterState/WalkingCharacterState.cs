@@ -4,16 +4,13 @@ class WalkingCharacterState : CharacterState
 {
     private float speed;
 
-    private Rigidbody rigidBody;
-
-    public WalkingCharacterState(float speed, Rigidbody rigidBody, ICharacterStateMachine characterStateMachine) : base(characterStateMachine)
+    public WalkingCharacterState(float speed, Rigidbody rigidBody, ICharacterStateMachine characterStateMachine) : base(rigidBody, characterStateMachine)
     {
         this.speed = speed;
-        this.rigidBody = rigidBody;
     }
 
     override public void Move(Vector2 direction)
     {
-        rigidBody.AddForce(Vector3.forward * speed, ForceMode.Impulse);
+        rigidBody.AddForce(new Vector3(direction.x, 0, direction.y) * speed, ForceMode.Impulse);
     }
 }
