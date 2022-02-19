@@ -2,7 +2,7 @@
     "name": "CharacterControls",
     "maps": [
         {
-            "name": "Game",
+            "name": "Default",
             "id": "f024c828-a6a3-4afa-8c27-aeefedca1e38",
             "actions": [
                 {
@@ -11,7 +11,8 @@
                     "id": "89efd10f-b410-45c9-b454-897e7755ffff",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,8 @@
                     "id": "1179d6b4-09c1-42f1-beba-424d54fc4f8d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Move",
@@ -27,7 +29,8 @@
                     "id": "8f20f67e-2efb-4aaa-831e-e7de20c0a942",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "ShiftPress",
@@ -35,7 +38,8 @@
                     "id": "56984f48-e294-4324-8006-87d68d7d1423",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ShiftRelease",
@@ -43,7 +47,8 @@
                     "id": "69ebbc15-c3f6-4cc1-bb04-a070395c99e8",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

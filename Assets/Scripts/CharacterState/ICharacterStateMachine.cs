@@ -1,4 +1,7 @@
-public interface ICharacterStateMachine
+namespace Voidroad.Prototype1
 {
-    public void SetState(CharacterState state);
+    public interface ICharacterStateMachine
+    {
+        public void SetState(CharacterState state);
+    }
 }
