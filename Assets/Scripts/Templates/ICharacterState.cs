@@ -1,6 +1,9 @@
-interface ICharacterState
+namespace Voidroad.Prototype1
 {
-    public void OnStateEnter();
+    interface ICharacterState
+    {
+        public void OnStateEnter();
 
-    public void OnStateExit();
+        public void OnStateExit();
+    }
 }

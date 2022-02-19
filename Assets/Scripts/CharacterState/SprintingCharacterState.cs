@@ -1,16 +1,19 @@
 using UnityEngine;
 
-class SprintingCharacterState : CharacterState
+namespace Voidroad.Prototype1
 {
-    private float speed;
-
-    public SprintingCharacterState(float speed, Rigidbody rigidBody, ICharacterStateMachine characterStateMachine) : base(rigidBody, characterStateMachine)
+    class SprintingCharacterState : CharacterState
     {
-        this.speed = speed;
-    }
+        private float speed;
 
-    override public void Move(Vector2 direction)
-    {
-        rigidBody.AddForce(new Vector3(direction.x, 0, direction.y) * speed, ForceMode.Impulse);
+        public SprintingCharacterState(float speed, Rigidbody rigidBody, ICharacterStateMachine characterStateMachine) : base(rigidBody, characterStateMachine)
+        {
+            this.speed = speed;
+        }
+
+        override public void Move(Vector2 direction)
+        {
+            rigidBody.AddForce(new Vector3(direction.x, 0, direction.y) * speed, ForceMode.Impulse);
+        }
     }
 }

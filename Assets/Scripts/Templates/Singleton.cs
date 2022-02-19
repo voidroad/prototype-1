@@ -1,17 +1,20 @@
-abstract public class Singleton<T> where T : class, new()
+namespace Voidroad.Prototype1
 {
-    private static T instance;
-
-    public static T Instance
+    abstract public class Singleton<T> where T : class, new()
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new T();
-            }
+        private static T instance;
 
-            return instance;
+        public static T Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new T();
+                }
+
+                return instance;
+            }
         }
     }
 }

@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public abstract class CharacterState : IMoveable
+namespace Voidroad.Prototype1
 {
-    protected Rigidbody rigidBody;
-    
-    protected ICharacterStateMachine characterStateMachine;
-
-    public CharacterState(Rigidbody rigidBody, ICharacterStateMachine characterStateMachine)
+    public abstract class CharacterState : IMoveable
     {
-        this.rigidBody = rigidBody;
-        this.characterStateMachine = characterStateMachine;
+        protected Rigidbody rigidBody;
+
+        protected ICharacterStateMachine characterStateMachine;
+
+        public CharacterState(Rigidbody rigidBody, ICharacterStateMachine characterStateMachine)
+        {
+            this.rigidBody = rigidBody;
+            this.characterStateMachine = characterStateMachine;
+        }
+
+        public virtual void Attack() { }
+
+        public virtual void Jump()
+        {
+            rigidBody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+        }
+
+        public virtual void Move(Vector2 direction) { }
     }
-
-    public virtual void Attack() { }
-
-    public virtual void Jump()
-    {
-        rigidBody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
-    }
-
-    public virtual void Move(Vector2 direction) { }
 }

@@ -1,10 +1,13 @@
 using UnityEngine;
 
-interface IMoveable
+namespace Voidroad.Prototype1
 {
-    public void Attack();
+    interface IMoveable
+    {
+        void Attack();
 
-    public void Jump();
-    
-    public void Move(Vector2 direction);
+        void Jump();
+
+        void Move(Vector2 direction);
+    }
 }

@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using Voidroad.Prototype1;
 
 namespace Tests
 {

@@ -1,5 +1,8 @@
-public enum EventKey
+namespace Voidroad.Prototype1
 {
-    Foo,
-    Bar
+    public enum EventKey
+    {
+        Foo,
+        Bar
+    }
 }

@@ -1,44 +1,47 @@
 using System;
 using System.Collections.Generic;
 
-public class InMemoryGameEventManager : Singleton<InMemoryGameEventManager>, IGameEventManager<Enum, Action>
+namespace Voidroad.Prototype1
 {
-    private Dictionary<Enum, Action> events = new Dictionary<Enum, Action>();
-
-    public void Subscribe(Enum eventKey, Action action)
+    public class InMemoryGameEventManager : Singleton<InMemoryGameEventManager>, IGameEventManager<Enum, Action>
     {
-        Action thisAction;
+        private Dictionary<Enum, Action> events = new Dictionary<Enum, Action>();
 
-        if (Instance.events.TryGetValue(eventKey, out thisAction))
+        public void Subscribe(Enum eventKey, Action action)
         {
-            thisAction += action;
-            Instance.events[eventKey] = thisAction;
+            Action thisAction;
+
+            if (Instance.events.TryGetValue(eventKey, out thisAction))
+            {
+                thisAction += action;
+                Instance.events[eventKey] = thisAction;
+            }
+            else
+            {
+                thisAction += action;
+                Instance.events.Add(eventKey, thisAction);
+            }
         }
-        else
+
+        public void Unsubscribe(Enum eventKey, Action action)
         {
-            thisAction += action;
-            Instance.events.Add(eventKey, thisAction);
+            Action thisAction;
+
+            if (Instance.events.TryGetValue(eventKey, out thisAction))
+            {
+                thisAction -= action;
+                Instance.events[eventKey] = thisAction;
+            }
         }
-    }
 
-    public void Unsubscribe(Enum eventKey, Action action)
-    {
-        Action thisAction;
-
-        if (Instance.events.TryGetValue(eventKey, out thisAction))
+        public void Notify(Enum eventKey)
         {
-            thisAction -= action;
-            Instance.events[eventKey] = thisAction;
-        }
-    }
+            Action action;
 
-    public void Notify(Enum eventKey)
-    {
-        Action action;
-
-        if (Instance.events.TryGetValue(eventKey, out action))
-        {
-            action?.Invoke();
+            if (Instance.events.TryGetValue(eventKey, out action))
+            {
+                action?.Invoke();
+            }
         }
     }
 }

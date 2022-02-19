@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class GameEventManagerMonoBehaviour : MonoBehaviour
+namespace Voidroad.Prototype1
 {
-    private InMemoryGameEventManager Manager { get; set; }
-
-    public GameEventManagerMonoBehaviour()
+    public class GameEventManagerMonoBehaviour : MonoBehaviour
     {
-        Manager = InMemoryGameEventManager.Instance;
+        private InMemoryGameEventManager Manager { get; set; }
+
+        public GameEventManagerMonoBehaviour()
+        {
+            Manager = InMemoryGameEventManager.Instance;
+        }
     }
 }
